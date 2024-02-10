@@ -3,9 +3,8 @@
         a command interpreter for HBNB project."""
 
 import cmd
-from models.base_model import BaseModel
-from models.user import User
-import models
+from models import storage, BaseModel, User, State, City, Amenity, Place, Review
+# import models
 import sys
 
 
@@ -13,7 +12,8 @@ class HBNBCommand(cmd.Cmd):
     """Command interpreter class."""
 
     prompt = "(hbnb) "
-    classes = ("BaseModel", "User")
+    classes = ("BaseModel", "User", "State", "City",
+        "Amenity", "Place", "Review")
 
     def emptyline(self):
         """Do nothing on empty input line"""
@@ -34,8 +34,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         arg_list = arg.split()
+        class_name = arg_list[0]
         try:
-            new_instance = eval(arg_list[0])()
+            new_instance = eval(class_name)()
             new_instance.save()
             print(new_instance.id)
         except NameError:
@@ -59,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
 
         obj_id = arg_list[1]
         obj_key = "{}.{}".format(class_name, obj_id)
-        all_objs = models.storage.all()
+        all_objs = storage.all()
         if obj_key not in all_objs:
             print("** no instance found **")
             return
@@ -84,16 +85,16 @@ class HBNBCommand(cmd.Cmd):
 
         obj_id = arg_list[1]
         obj_key = "{}.{}".format(class_name, obj_id)
-        all_objs = models.storage.all()
+        all_objs = storage.all()
         if obj_key not in all_objs:
             print("** no instance found **")
         else:
             del all_objs[obj_key]
-            models.storage.save()
+            storage.save()
 
     def do_all(self, arg):
         """All command to print string representation of all instances"""
-        all_objs = models.storage.all()
+        all_objs = storage.all()
         if arg:
             arg_list = arg.split()
             class_name = arg_list[0]
@@ -125,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
 
         obj_id = arg_list[1]
         obj_key = "{}.{}".format(class_name, obj_id)
-        all_objs = models.storage.all()
+        all_objs = storage.all()
         if obj_key not in all_objs:
             print("** no instance found **")
             return
