@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# from models.base_model import BaseModel
+
 import json
 
 
@@ -42,8 +42,9 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as f:
                 data = json.load(f)
-            from models.base_model import BaseModel
-            from models.user import User
+            from models import (
+                BaseModel, User, State, City, Amenity, Place, Review
+            )
             for key, value in data.items():
                 class_name, obj_id = key.split('.')
                 cls = eval(class_name)

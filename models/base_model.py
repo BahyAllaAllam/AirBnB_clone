@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-from models import storage
 
 
 class BaseModel:
@@ -32,6 +31,7 @@ class BaseModel:
             *args: Variable length argument list.
             **kwargs: Arbitrary keyword arguments.
         """
+        from models import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -66,6 +66,7 @@ class BaseModel:
         """
         Updates the updated_at attribute with the current datetime.
         """
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
