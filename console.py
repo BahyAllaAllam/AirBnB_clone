@@ -3,8 +3,8 @@
         a command interpreter for HBNB project."""
 
 import cmd
-from models import storage, BaseModel, User, State, City, Amenity, Place, Review
-# import models
+from models import (
+    storage, BaseModel, User, State, City, Amenity, Place, Review)
 import sys
 
 
@@ -13,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
     classes = ("BaseModel", "User", "State", "City",
-        "Amenity", "Place", "Review")
+               "Amenity", "Place", "Review")
 
     def emptyline(self):
         """Do nothing on empty input line"""
