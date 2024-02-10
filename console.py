@@ -142,7 +142,6 @@ class HBNBCommand(cmd.Cmd):
             obj = all_objs[obj_key]
             attr_name = arg_list[2]
             attr_value = arg_list[3]
-            # Validate and cast attribute value
             if hasattr(obj, attr_name):
                 attr_type = type(getattr(obj, attr_name))
                 if attr_type is int:
@@ -158,8 +157,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        command = ' '.join(sys.argv[1:])
-        HBNBCommand().onecmd(command)
-    else:
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
