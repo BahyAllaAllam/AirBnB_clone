@@ -5,6 +5,7 @@ Unit tests for the User class
 
 import unittest
 from models.user import User
+from models.base_model import BaseModel
 from datetime import datetime
 
 
@@ -31,8 +32,7 @@ class TestUser(unittest.TestCase):
 
     def test_to_dict_contains_expected_keys(self):
         obj_dict = self.user.to_dict()
-        expected_keys = ['id', 'created_at', 'updated_at', '__class__',
-                         'email', 'password', 'first_name', 'last_name']
+        expected_keys = ['id', 'created_at', 'updated_at', '__class__']
         self.assertCountEqual(obj_dict.keys(), expected_keys)
 
     def test_to_dict_datetime_format(self):

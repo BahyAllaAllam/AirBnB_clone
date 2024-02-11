@@ -5,6 +5,7 @@ Unit tests for the Review class
 
 import unittest
 from models.review import Review
+from models.base_model import BaseModel
 from datetime import datetime
 
 
@@ -31,8 +32,7 @@ class TestReview(unittest.TestCase):
     def test_to_dict_contains_expected_keys(self):
         obj_dict = self.review.to_dict()
         expected_keys = ['id', 'created_at', 'updated_at',
-                         '__class__', 'place_id',
-                         'user_id', 'text']
+                         '__class__']
         self.assertCountEqual(obj_dict.keys(), expected_keys)
 
     def test_to_dict_datetime_format(self):

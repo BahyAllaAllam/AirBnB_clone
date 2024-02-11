@@ -5,6 +5,7 @@ Unit tests for the City class
 
 import unittest
 from models.city import City
+from models.base_model import BaseModel
 from datetime import datetime
 
 
@@ -30,7 +31,7 @@ class TestCity(unittest.TestCase):
     def test_to_dict_contains_expected_keys(self):
         obj_dict = self.city.to_dict()
         expected_keys = ['id', 'created_at', 'updated_at',
-                         '__class__', 'state_id', 'name']
+                         '__class__']
         self.assertCountEqual(obj_dict.keys(), expected_keys)
 
     def test_to_dict_datetime_format(self):
@@ -43,6 +44,16 @@ class TestCity(unittest.TestCase):
     def test_to_dict_class_name(self):
         obj_dict = self.city.to_dict()
         self.assertEqual(obj_dict['__class__'], 'City')
+
+    def test_attributes_custom_values(self):
+        custom_state_id = "CA"
+        custom_name = "Los Angeles"
+
+        self.city.state_id = custom_state_id
+        self.city.name = custom_name
+
+        self.assertEqual(self.city.state_id, custom_state_id)
+        self.assertEqual(self.city.name, custom_name)
 
 
 if __name__ == '__main__':

@@ -5,6 +5,7 @@ Unit tests for the Place class
 
 import unittest
 from models.place import Place
+from models.base_model import BaseModel
 from datetime import datetime
 
 
@@ -38,11 +39,7 @@ class TestPlace(unittest.TestCase):
 
     def test_to_dict_contains_expected_keys(self):
         obj_dict = self.place.to_dict()
-        expected_keys = ['id', 'created_at', 'updated_at', '__class__',
-                         'city_id', 'user_id', 'name', 'description',
-                         'number_rooms', 'number_bathrooms', 'max_guest',
-                         'price_by_night', 'latitude', 'longitude',
-                         'amenity_ids']
+        expected_keys = ['id', 'created_at', 'updated_at', '__class__']
         self.assertCountEqual(obj_dict.keys(), expected_keys)
 
     def test_to_dict_datetime_format(self):

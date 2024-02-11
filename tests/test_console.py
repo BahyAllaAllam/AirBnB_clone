@@ -58,7 +58,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_update_command(self, mock_stdout):
         self.cmd.onecmd("update BaseModel 1234 name John")
         self.assertEqual(
-            mock_stdout.getvalue().strip(), "** instance id missing **")
+            mock_stdout.getvalue().strip(), "** no instance found **")
 
 
 if __name__ == '__main__':

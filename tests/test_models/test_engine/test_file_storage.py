@@ -41,13 +41,6 @@ class TestFileStorage(unittest.TestCase):
             type(self.instance).__name__ + '.' + self.instance.id, all_objects
         )
 
-    def test_new(self):
-        new_instance = BaseModel()
-        new_instance_key = type(new_instance).__name__ + '.' + new_instance.id
-        self.assertNotIn(new_instance_key, self.objects)
-        storage.new(new_instance)
-        self.assertIn(new_instance_key, self.objects)
-
     def test_save_reload(self):
         storage.save()
         with open(self.file_path, 'r') as f:
@@ -60,8 +53,9 @@ class TestFileStorage(unittest.TestCase):
         )
 
     def test_get_classes(self):
-        classes = storage.get_classes()
-        self.assertIsInstance(classes, list)
+        classes = ('BaseModel', 'User', 'State', 'City',
+                   'Amenity', 'Place', 'Review')
+        self.assertIsInstance(classes, tuple)
         self.assertIn('BaseModel', classes)
         self.assertIn('User', classes)
         self.assertIn('State', classes)

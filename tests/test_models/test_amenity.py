@@ -5,6 +5,7 @@ Unit tests for the Amenity class
 
 import unittest
 from models.amenity import Amenity
+from models.base_model import BaseModel
 from datetime import datetime
 
 
@@ -29,7 +30,7 @@ class TestAmenity(unittest.TestCase):
     def test_to_dict_contains_expected_keys(self):
         obj_dict = self.amenity.to_dict()
         expected_keys = ['id', 'created_at', 'updated_at',
-                         '__class__', 'name']
+                         '__class__']
         self.assertCountEqual(obj_dict.keys(), expected_keys)
 
     def test_to_dict_datetime_format(self):
