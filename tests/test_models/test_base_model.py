@@ -34,7 +34,7 @@ class TestBaseModel(unittest.TestCase):
             self.base_model.id, self.base_model.__dict__)
         self.assertEqual(str(self.base_model), expected)
 
-    def test_save_updates_updated_at(self):
+    def test_save(self):
         prev_updated_at = self.base_model.updated_at
         self.base_model.save()
         self.assertNotEqual(prev_updated_at, self.base_model.updated_at)
