@@ -13,6 +13,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models import storage
+from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -63,6 +64,13 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn('Amenity', classes)
         self.assertIn('Place', classes)
         self.assertIn('Review', classes)
+
+    def test_reload(self):
+        with open(self.file_path, 'w') as f:
+            f.write('{}')
+        storage_instance = FileStorage()
+        storage_instance.reload()
+        self.assertEqual(len(storage_instance.all()), 29)
 
 
 if __name__ == '__main__':
